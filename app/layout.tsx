@@ -15,9 +15,12 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Yash Thesiya · Software Engineer",
+  title: "Yash Thesiya | Full-Stack Developer & React/Next.js Enthusiast",
   description:
     "Animated portfolio of Yash Thesiya, Software Engineer at Openmalo. Specializing in modern web applications with React, Next.js, TypeScript, and Node.js.",
+  verification: {
+    google: "59Qt7CkU9CW8DyVumPAz1rAoAWNVs83Vnq2LJEdN-vA",
+  },
   keywords: [
     "Software Engineer",
     "Web Developer",
