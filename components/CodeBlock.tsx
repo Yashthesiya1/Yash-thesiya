@@ -89,12 +89,12 @@ export default function CodeBlock() {
               {"\n"}
               {"}"}{"\n"}
               {"\n"}
-              <span className="text-zinc-500">// TODO: add your company here ↓</span>
+              {/* <span className="text-zinc-500">// TODO: add your company here ↓</span> */}
               {"\n"}
               <span className="text-sky-400">console</span>.
               <span className="text-emerald-300">log</span>(
               <span className="text-amber-300">hire</span>(
-              <span className="text-lime-300">yashThesiya</span>));
+              <span className="text-lime-300">Openmalo</span>));
             </code>
           </pre>
         </div>
