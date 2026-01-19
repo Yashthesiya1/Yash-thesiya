@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
 import NavigationProgress from "@/components/NavigationProgress";
@@ -92,6 +93,7 @@ export default function RootLayout({
         <NavigationProgress />
         <Navigation />
         {children}
+        <Analytics />
       </body>
     </html>
   );
