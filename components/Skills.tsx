@@ -28,7 +28,7 @@ export default function Skills() {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: 1.2 }}
       className="px-2 py-4 sm:px-4 sm:py-6 lg:px-6 lg:py-8"
     >
       <motion.div

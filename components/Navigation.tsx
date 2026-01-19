@@ -1,39 +1,82 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, animate } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const navItems = [
-  { name: "Home", path: "/" },
-  { name: "Skills", path: "/skills" },
-  { name: "Projects", path: "/projects" },
-  { name: "Education", path: "/education" },
-  { name: "Fun", path: "/fun" },
+  { name: "Home", path: "#home" },
+  { name: "Skills", path: "#skills" },
+  { name: "Projects", path: "#projects" },
+  { name: "Education", path: "#education" },
+  { name: "Fun", path: "#fun" },
 ];
 
 export default function Navigation() {
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("#home");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map((item) => item.path.substring(1));
+      
+      if (window.scrollY < 100) {
+        setActiveSection("#home");
+        return;
+      }
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top >= -200 && rect.top <= 400) {
+            setActiveSection(`#${sectionId}`);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
+    e.preventDefault();
+    const element = document.getElementById(path.substring(1));
+    if (element) {
+      const targetPosition = element.offsetTop - 80; // Adjusted for nav height
+      const startPosition = window.pageYOffset;
+      
+      animate(startPosition, targetPosition, {
+        duration: 1.2, // Increased duration for a slower, more elegant scroll
+        ease: [0.45, 0, 0.55, 1], // easeInOutQuart for smooth acceleration/deceleration
+        onUpdate: (value) => window.scrollTo(0, value),
+      });
+
+      setActiveSection(path);
+    }
+  };
 
   return (
     <nav className="glass fixed top-4 left-1/2 z-50 -translate-x-1/2 rounded-full border border-zinc-700/60 bg-zinc-950/60 px-2 py-2 backdrop-blur-md sm:px-4">
       <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide sm:gap-2">
         {navItems.map((item) => {
-          const isActive = pathname === item.path;
+          const isActive = activeSection === item.path;
           return (
             <Link
               key={item.path}
               href={item.path}
+              onClick={(e) => handleScrollTo(e, item.path)}
               className="relative rounded-full px-3 py-2 text-xs sm:text-sm font-medium text-zinc-300 transition-colors hover:text-zinc-100 whitespace-nowrap sm:px-4"
             >
               {isActive && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute inset-0 rounded-full bg-sky-500/20 border border-sky-500/40"
+                  className="absolute inset-0 rounded-full bg-zinc-800/80 border border-zinc-600/50"
                   transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                 />
               )}
-              <span className={`relative z-10 ${isActive ? "text-sky-300" : ""}`}>
+              <span className={`relative z-10 ${isActive ? "text-zinc-100" : ""}`}>
                 {item.name}
               </span>
             </Link>
@@ -43,4 +86,7 @@ export default function Navigation() {
     </nav>
   );
 }
+
+
+
 

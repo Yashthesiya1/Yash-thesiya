@@ -58,7 +58,7 @@ export default function FunSection() {
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7 }}
+      transition={{ duration: 1.2 }}
       className="space-y-8"
     >
       <div className="text-center space-y-3">
