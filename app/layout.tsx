@@ -56,11 +56,20 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://yash-thesiya-2rni.vercel.app/",
+    url: "https://www.yashai.me/",
     title: "Yash Thesiya · Software Engineer",
     description: "Building modern, animated, and performant web applications.",
     siteName: "Yash Thesiya Portfolio",
+    images: [
+      {
+        url: "/icon.png",
+        width: 1200,
+        height: 630,
+        alt: "Yash Thesiya — Portfolio"
+      }
+    ]
   },
+
   twitter: {
     card: "summary_large_image",
     title: "Yash Thesiya · Software Engineer",
