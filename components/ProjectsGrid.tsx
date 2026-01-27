@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import {
   FiExternalLink,
   FiGithub,
@@ -19,9 +20,11 @@ const projects = [
     id: 1,
     title: "Creativeshizzle",
     subtitle: "AI-Powered Content & Brand Suite",
+    image: "/assest/creativeshizzle.png",
     description:
       "A comprehensive platform empowering businesses to automate content creation. Leveraging advanced LLMs, it generates on-brand articles, schedules posts, and provides a real-time collaborative workspace.",
     role: "Full-stack Developer",
+    year: "2025",
     tech: [
       "Next.js",
       "Nest.js",
@@ -48,9 +51,11 @@ const projects = [
     id: 2,
     title: "XyReg",
     subtitle: "MedTech Regulatory Compliance Platform",
+    image: "/assest/xyreg.png",
     description:
       "An enterprise-grade solution for medical device companies to manage global regulatory submissions and compliance. Streamlines the entire product lifecycle from concept to post-market surveillance.",
-    role: "Technical Lead",
+    role: "Full-stack Developer",
+    year: "2025",
     tech: [
       "React",
       "Radix UI",
@@ -143,11 +148,10 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       {/* Visual / Preview Area */}
       <div className="w-full lg:w-1/2 relative group perspective-1000">
         <div
-          className="absolute inset-0 bg-gradient-to-r blur-2xl opacity-20 -z-10 transition-opacity duration-500 group-hover:opacity-40"
-          style={{ backgroundImage: `linear-gradient(to right, ${project.color.split(' ')[1]}, ${project.color.split(' ')[3]})` }} // Approximate gradient extraction or just use a fixed one if complex
+          className={`absolute inset-0 bg-gradient-to-r ${project.color} blur-2xl opacity-20 -z-10 transition-opacity duration-500 group-hover:opacity-40`}
         />
         
-        {/* Abstract Interface Mockup */}
+        {/* Screenshot Preview */}
         <div className="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm aspect-[4/3] shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] group-hover:rotate-1">
             {/* Mock Header */}
             <div className="h-8 bg-zinc-900 border-b border-zinc-800 flex items-center px-4 gap-2">
@@ -156,23 +160,25 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
                 <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
             </div>
             
-            {/* Mock Content Body */}
-            <div className="p-6 h-full relative overflow-hidden">
-                {/* Decorative Gradients within the card */}
-                <div className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${project.color} opacity-10 blur-3xl rounded-full`} />
-                <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 opacity-10 blur-3xl rounded-full" />
-                
-                {/* Abstract UI Elements */}
-                <div className="space-y-4 relative z-10">
-                    <div className="h-8 w-1/3 bg-zinc-800/50 rounded animate-pulse" />
-                    <div className="flex gap-4">
-                        <div className="h-32 w-2/3 bg-zinc-800/30 rounded-lg border border-zinc-700/30" />
-                        <div className="h-32 w-1/3 bg-zinc-800/30 rounded-lg border border-zinc-700/30" />
-                    </div>
-                    <div className="h-4 w-full bg-zinc-800/30 rounded" />
-                    <div className="h-4 w-5/6 bg-zinc-800/30 rounded" />
-                    <div className="h-4 w-4/6 bg-zinc-800/30 rounded" />
-                </div>
+            {/* Screenshot */}
+            <div className="relative h-[calc(100%-2rem)] w-full overflow-hidden bg-zinc-950">
+              {/* Decorative Gradients within the card */}
+              <div
+                className={`pointer-events-none absolute top-0 right-0 w-72 h-72 bg-gradient-to-br ${project.color} opacity-10 blur-3xl rounded-full`}
+              />
+              <div className="pointer-events-none absolute bottom-0 left-0 w-56 h-56 bg-white/5 opacity-10 blur-3xl rounded-full" />
+
+              <Image
+                src={project.image}
+                alt={`${project.title} screenshot`}
+                fill
+                priority={index === 0}
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-contain object-center opacity-95 transition-transform duration-700 group-hover:scale-[1.01]"
+              />
+
+              {/* Subtle overlay for depth */}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
             </div>
 
              {/* Hover Overlay */}
@@ -194,7 +200,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
                 {project.role}
              </span>
              <span className="text-zinc-500">•</span>
-             <span className="text-zinc-400">2023 - Present</span>
+             <span className="text-zinc-400">{project.year} - Present</span>
           </div>
           
           <h3 className="text-3xl md:text-4xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all">
