@@ -49,7 +49,7 @@ export default function Hero() {
         custom={1}
         className="flex flex-wrap gap-3"
       >
-        <a
+        {/* <a
           href="#contact"
           className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-sky-500 px-5 py-2.5 text-sm font-medium text-sky-950 shadow-lg shadow-sky-500/40 transition hover:bg-sky-400"
         >
@@ -58,7 +58,7 @@ export default function Hero() {
             ✦
           </span>
           <span className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-r from-sky-300/40 via-emerald-200/40 to-indigo-300/40 opacity-0 blur-2xl transition group-hover:opacity-100" />
-        </a>
+        </a> */}
         <a
           href="/resume.pdf"
           download

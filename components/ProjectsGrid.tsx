@@ -12,6 +12,7 @@ import {
   FiCpu,
   FiGlobe,
   FiCheckCircle,
+  FiActivity,
 } from "react-icons/fi";
 
 // Project Data
@@ -77,6 +78,70 @@ const projects = [
     color: "from-emerald-400 to-teal-600",
     glow: "rgba(16, 185, 129, 0.4)",
     icon: <FiShield className="w-6 h-6" />,
+  },
+  {
+    id: 3,
+    title: "Omnivia SaaS",
+    subtitle: "AI-Powered Business Platform",
+    image: "/assest/omnivia.png",
+    description:
+      "A comprehensive AI-powered business intelligence platform that transforms how organizations process and analyze data. Features ChatGPT integration for automated insights, bulk data processing capabilities, and intelligent visualization tools.",
+    role: "Full-stack Developer",
+    year: "2024",
+    tech: [
+      "Next.js",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "MUI",
+      "ChatGPT API",
+    ],
+    features: [
+      "ChatGPT Integration for AI-Driven Insights",
+      "Excel Sheet Reader for Bulk Data Processing",
+      "Dynamic Data Visualization with Interactive Charts",
+      "AI-Powered Summaries from Large Datasets",
+      "Multi-User Scalability Architecture",
+    ],
+    links: {
+      github: "#",
+      live: "#",
+    },
+    color: "from-purple-400 to-pink-600",
+    glow: "rgba(168, 85, 247, 0.4)",
+    icon: <FiZap className="w-6 h-6" />,
+  },
+  {
+    id: 4,
+    title: "Doctor Management System",
+    subtitle: "Healthcare Platform",
+    image: null,
+    description:
+      "A secure and comprehensive healthcare management platform designed for modern medical practices. Streamlines patient care with electronic medical records, appointment scheduling, and role-based access control for healthcare teams.",
+    role: "Full-stack Developer",
+    year: "2024",
+    tech: [
+      "Next.js",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
+      "Supabase Auth",
+      "MUI",
+    ],
+    features: [
+      "Secure Authentication with Supabase Auth",
+      "Appointment Scheduling with Automated Notifications",
+      "Electronic Medical Records (EMR) Management",
+      "Role-Based Access Control (RBAC)",
+      "Dashboard Analytics for Appointments & Trends",
+    ],
+    links: {
+      github: "#",
+      live: "#",
+    },
+    color: "from-cyan-400 to-blue-600",
+    glow: "rgba(34, 211, 238, 0.4)",
+    icon: <FiActivity className="w-6 h-6" />,
   },
 ];
 
@@ -161,21 +226,32 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
             </div>
             
             {/* Screenshot */}
-            <div className="relative h-[calc(100%-2rem)] w-full overflow-hidden bg-zinc-950">
+            <div className={`relative h-[calc(100%-2rem)] w-full overflow-hidden ${
+              project.image ? "bg-zinc-950" : `bg-gradient-to-br ${project.color}`
+            }`}>
               {/* Decorative Gradients within the card */}
               <div
                 className={`pointer-events-none absolute top-0 right-0 w-72 h-72 bg-gradient-to-br ${project.color} opacity-10 blur-3xl rounded-full`}
               />
               <div className="pointer-events-none absolute bottom-0 left-0 w-56 h-56 bg-white/5 opacity-10 blur-3xl rounded-full" />
 
-              <Image
-                src={project.image}
-                alt={`${project.title} screenshot`}
-                fill
-                priority={index === 0}
-                sizes="(min-width: 1024px) 50vw, 100vw"
-                className="object-contain object-center opacity-95 transition-transform duration-700 group-hover:scale-[1.01]"
-              />
+              {project.image ? (
+                <Image
+                  src={project.image}
+                  alt={`${project.title} screenshot`}
+                  fill
+                  priority={index === 0}
+                  sizes="(min-width: 1024px) 50vw, 100vw"
+                  className="object-contain object-center opacity-95 transition-transform duration-700 group-hover:scale-[1.01]"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center">
+                  <div className="text-center text-white/60 opacity-75">
+                    <div className="text-6xl mb-2">{project.icon}</div>
+                    <p className="text-sm font-medium">No screenshot available</p>
+                  </div>
+                </div>
+              )}
 
               {/* Subtle overlay for depth */}
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
