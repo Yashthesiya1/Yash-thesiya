@@ -1,6 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const education = [
   {
@@ -22,30 +23,41 @@ const education = [
 ];
 
 export default function Education() {
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const enableMotion = !shouldReduceMotion && !isMobile;
+
+  useEffect(() => {
+    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile, { passive: true });
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 1.2 }}
+      initial={enableMotion ? { opacity: 0, y: 40 } : false}
+      whileInView={enableMotion ? { opacity: 1, y: 0 } : undefined}
+      viewport={enableMotion ? { once: true, margin: "-100px" } : undefined}
+      transition={enableMotion ? { duration: 1.2 } : { duration: 0 }}
       className="space-y-12 max-w-4xl mx-auto px-4"
     >
       {/* Header */}
       <div className="text-center space-y-3 mb-16">
         <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={enableMotion ? { opacity: 0, y: 20 } : false}
+          whileInView={enableMotion ? { opacity: 1, y: 0 } : undefined}
+          viewport={enableMotion ? { once: true } : undefined}
+          transition={enableMotion ? { duration: 0.6 } : { duration: 0 }}
           className="text-3xl font-bold text-white sm:text-5xl lg:text-6xl"
         >
           EDUCATION
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          initial={enableMotion ? { opacity: 0, y: 20 } : false}
+          whileInView={enableMotion ? { opacity: 1, y: 0 } : undefined}
+          viewport={enableMotion ? { once: true } : undefined}
+          transition={enableMotion ? { duration: 0.6, delay: 0.1 } : { duration: 0 }}
           className="text-zinc-400 text-base sm:text-lg"
         >
           My educational background and continuous learning journey.
@@ -57,10 +69,10 @@ export default function Education() {
         {education.map((edu, idx) => (
           <motion.div
             key={idx}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.2 }}
+            initial={enableMotion ? { opacity: 0, x: -20 } : false}
+            whileInView={enableMotion ? { opacity: 1, x: 0 } : undefined}
+            viewport={enableMotion ? { once: true } : undefined}
+            transition={enableMotion ? { duration: 0.5, delay: idx * 0.2 } : { duration: 0 }}
             className="relative pl-8 md:pl-12"
           >
             {/* Timeline Dot */}

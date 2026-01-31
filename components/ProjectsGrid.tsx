@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import {
   FiExternalLink,
@@ -146,6 +146,17 @@ const projects = [
 ];
 
 export default function ProjectsGrid() {
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const enableMotion = !shouldReduceMotion && !isMobile;
+
+  useEffect(() => {
+    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile, { passive: true });
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
+
   return (
     <section className="py-16 sm:py-24 px-4 w-full relative overflow-hidden">
       {/* Background Ambience */}
@@ -158,28 +169,28 @@ export default function ProjectsGrid() {
         {/* Section Header */}
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            initial={enableMotion ? { opacity: 0, y: 20 } : false}
+            whileInView={enableMotion ? { opacity: 1, y: 0 } : undefined}
+            viewport={enableMotion ? { once: true } : undefined}
             className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-zinc-400 text-sm font-medium backdrop-blur-md"
           >
             <FiLayers className="w-4 h-4" />
             <span>SELECTED WORKS</span>
           </motion.div>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            initial={enableMotion ? { opacity: 0, y: 20 } : false}
+            whileInView={enableMotion ? { opacity: 1, y: 0 } : undefined}
+            viewport={enableMotion ? { once: true } : undefined}
+            transition={enableMotion ? { delay: 0.1 } : { duration: 0 }}
             className="text-3xl sm:text-4xl md:text-6xl font-bold text-white tracking-tight"
           >
             Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 to-zinc-500">Digital Scale</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            initial={enableMotion ? { opacity: 0, y: 20 } : false}
+            whileInView={enableMotion ? { opacity: 1, y: 0 } : undefined}
+            viewport={enableMotion ? { once: true } : undefined}
+            transition={enableMotion ? { delay: 0.2 } : { duration: 0 }}
             className="text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed"
           >
             Crafting robust, scalable, and user-centric applications. Here are some of the flagship projects I've engineered.
@@ -189,7 +200,12 @@ export default function ProjectsGrid() {
         {/* Projects Showcase */}
         <div className="space-y-20 sm:space-y-32">
           {projects.map((project, idx) => (
-            <ProjectCard key={project.id} project={project} index={idx} />
+            <ProjectCard
+              key={project.id}
+              project={project}
+              index={idx}
+              enableMotion={enableMotion}
+            />
           ))}
         </div>
       </div>
@@ -197,15 +213,23 @@ export default function ProjectsGrid() {
   );
 }
 
-function ProjectCard({ project, index }: { project: any; index: number }) {
+function ProjectCard({
+  project,
+  index,
+  enableMotion,
+}: {
+  project: any;
+  index: number;
+  enableMotion: boolean;
+}) {
   const isEven = index % 2 === 0;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-20%" }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
+      initial={enableMotion ? { opacity: 0, y: 50 } : false}
+      whileInView={enableMotion ? { opacity: 1, y: 0 } : undefined}
+      viewport={enableMotion ? { once: true, margin: "-20%" } : undefined}
+      transition={enableMotion ? { duration: 1.2, ease: "easeOut" } : { duration: 0 }}
       className={`flex flex-col ${
         isEven ? "lg:flex-row" : "lg:flex-row-reverse"
       } gap-8 sm:gap-12 lg:gap-20 items-center`}

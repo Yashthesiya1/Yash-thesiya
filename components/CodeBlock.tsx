@@ -1,13 +1,29 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function CodeBlock() {
+  const [isMobile, setIsMobile] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
+  const enableMotion = !shouldReduceMotion && !isMobile;
+
+  useEffect(() => {
+    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile, { passive: true });
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
+
   return (
     <motion.section
-      initial={{ opacity: 0, y: 40, scale: 0.97 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 0.9, 0.26, 1] as const }}
+      initial={enableMotion ? { opacity: 0, y: 40, scale: 0.97 } : false}
+      animate={enableMotion ? { opacity: 1, y: 0, scale: 1 } : { opacity: 1, y: 0, scale: 1 }}
+      transition={
+        enableMotion
+          ? { duration: 0.7, delay: 0.2, ease: [0.22, 0.9, 0.26, 1] as const }
+          : { duration: 0 }
+      }
       className="relative"
     >
       <div className="relative overflow-hidden rounded-2xl border border-zinc-800/90 bg-zinc-950/80 shadow-[0_18px_40px_rgba(15,23,42,0.95)]">

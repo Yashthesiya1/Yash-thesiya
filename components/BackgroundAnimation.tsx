@@ -18,7 +18,7 @@ export default function BackgroundAnimation() {
   const [mousePosition, setMousePosition] = useState({ x: 50, y: 50 });
   const [isMobile, setIsMobile] = useState(false);
   const shouldReduceMotion = useReducedMotion();
-  const enableMotion = !shouldReduceMotion;
+  const enableMotion = !shouldReduceMotion && !isMobile;
 
   useEffect(() => {
     const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
