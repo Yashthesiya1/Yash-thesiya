@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { skillIconMap, skillCategories } from "./skills/skillIconMap";
 
 const categoryColors: Record<string, { text: string; glow: string }> = {
@@ -24,30 +23,19 @@ const categoryColors: Record<string, { text: string; glow: string }> = {
 };
 
 export default function Skills() {
-  const [isMobile, setIsMobile] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
-  const enableMotion = !shouldReduceMotion && !isMobile;
-
-  useEffect(() => {
-    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
-    updateIsMobile();
-    window.addEventListener("resize", updateIsMobile, { passive: true });
-    return () => window.removeEventListener("resize", updateIsMobile);
-  }, []);
-
   return (
     <motion.div
-      initial={enableMotion ? { opacity: 0, y: 40 } : false}
-      whileInView={enableMotion ? { opacity: 1, y: 0 } : undefined}
-      viewport={enableMotion ? { once: true, margin: "-100px" } : undefined}
-      transition={enableMotion ? { duration: 1.2 } : { duration: 0 }}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 1.2 }}
       className="px-2 py-4 sm:px-4 sm:py-6 lg:px-6 lg:py-8"
     >
       <motion.div
-        initial={enableMotion ? { opacity: 0, y: 16 } : false}
-        whileInView={enableMotion ? { opacity: 1, y: 0 } : undefined}
-        viewport={enableMotion ? { once: true } : undefined}
-        transition={enableMotion ? { duration: 0.6 } : { duration: 0 }}
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         className="text-center"
       >
         <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Skills</h2>
@@ -62,14 +50,10 @@ export default function Skills() {
           return (
             <motion.section
               key={category}
-              initial={enableMotion ? { opacity: 0, y: 24 } : false}
-              whileInView={enableMotion ? { opacity: 1, y: 0 } : undefined}
-              viewport={enableMotion ? { once: true } : undefined}
-              transition={
-                enableMotion
-                  ? { duration: 0.55, delay: categoryIdx * 0.06 }
-                  : { duration: 0 }
-              }
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: categoryIdx * 0.06 }}
               className="space-y-5"
             >
               <h3
@@ -85,15 +69,11 @@ export default function Skills() {
                   return (
                     <motion.div
                       key={skill}
-                      initial={enableMotion ? { opacity: 0, scale: 0.9, y: 8 } : false}
-                      whileInView={enableMotion ? { opacity: 1, scale: 1, y: 0 } : undefined}
-                      viewport={enableMotion ? { once: true } : undefined}
-                      transition={
-                        enableMotion
-                          ? { duration: 0.35, delay: idx * 0.05 }
-                          : { duration: 0 }
-                      }
-                      whileHover={enableMotion ? { scale: 1.05, y: -3 } : undefined}
+                      initial={{ opacity: 0, scale: 0.9, y: 8 }}
+                      whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.35, delay: idx * 0.05 }}
+                      whileHover={{ scale: 1.05, y: -3 }}
                       className={`group relative flex h-20 w-20 flex-col items-center justify-center gap-2 rounded-2xl border border-slate-700/70 bg-[#050b15]/90 text-center text-[0.7rem] font-medium text-zinc-200 shadow-[0_14px_30px_rgba(15,23,42,0.9)] backdrop-blur ${colors.glow}`}
                     >
                       {IconComponent && (

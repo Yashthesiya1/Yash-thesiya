@@ -1,27 +1,15 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { heroText, fadeUp } from "./animations";
 
 export default function Hero() {
-  const [isMobile, setIsMobile] = useState(false);
-  const shouldReduceMotion = useReducedMotion();
-  const enableMotion = !shouldReduceMotion && !isMobile;
-
-  useEffect(() => {
-    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
-    updateIsMobile();
-    window.addEventListener("resize", updateIsMobile, { passive: true });
-    return () => window.removeEventListener("resize", updateIsMobile);
-  }, []);
-
   return (
     <section className="space-y-6 lg:space-y-7">
       <motion.div
         variants={heroText}
-        initial={enableMotion ? "hidden" : false}
-        animate={enableMotion ? "visible" : undefined}
+        initial="hidden"
+        animate="visible"
         className="inline-flex items-center gap-2 rounded-full border border-sky-400/40 bg-sky-500/5 px-3 py-1 text-xs font-medium text-sky-200 shadow-sm shadow-sky-500/40 backdrop-blur"
       >
         <span className="inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.9)]" />
@@ -30,8 +18,8 @@ export default function Hero() {
       </motion.div>
 
       <motion.div
-        initial={enableMotion ? "hidden" : false}
-        animate={enableMotion ? "visible" : undefined}
+        initial="hidden"
+        animate="visible"
         variants={heroText}
         className="space-y-4 sm:space-y-5"
       >
@@ -55,8 +43,8 @@ export default function Hero() {
       </motion.div>
 
       <motion.div
-        initial={enableMotion ? "hidden" : false}
-        animate={enableMotion ? "visible" : undefined}
+        initial="hidden"
+        animate="visible"
         variants={fadeUp}
         custom={1}
         className="flex flex-wrap gap-3"
