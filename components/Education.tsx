@@ -37,7 +37,7 @@ export default function Education() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-bold text-white sm:text-6xl"
+          className="text-3xl font-bold text-white sm:text-5xl lg:text-6xl"
         >
           EDUCATION
         </motion.h1>
@@ -46,7 +46,7 @@ export default function Education() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-zinc-400 text-lg"
+          className="text-zinc-400 text-base sm:text-lg"
         >
           My educational background and continuous learning journey.
         </motion.p>

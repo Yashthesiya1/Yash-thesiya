@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { motion, animate } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const navItems = [
@@ -16,43 +16,47 @@ export default function Navigation() {
   const [activeSection, setActiveSection] = useState("#home");
 
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = navItems.map((item) => item.path.substring(1));
-      
-      if (window.scrollY < 100) {
-        setActiveSection("#home");
-        return;
-      }
+    let rafId: number | null = null;
 
-      for (const sectionId of sections) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top >= -200 && rect.top <= 400) {
-            setActiveSection(`#${sectionId}`);
-            break;
+    const handleScroll = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(() => {
+        const sections = navItems.map((item) => item.path.substring(1));
+
+        if (window.scrollY < 100) {
+          setActiveSection("#home");
+          rafId = null;
+          return;
+        }
+
+        for (const sectionId of sections) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top >= -200 && rect.top <= 400) {
+              setActiveSection(`#${sectionId}`);
+              break;
+            }
           }
         }
-      }
+
+        rafId = null;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) window.cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, path: string) => {
     e.preventDefault();
     const element = document.getElementById(path.substring(1));
     if (element) {
-      const targetPosition = element.offsetTop - 80; // Adjusted for nav height
-      const startPosition = window.pageYOffset;
-      
-      animate(startPosition, targetPosition, {
-        duration: 1.2, // Increased duration for a slower, more elegant scroll
-        ease: [0.45, 0, 0.55, 1], // easeInOutQuart for smooth acceleration/deceleration
-        onUpdate: (value) => window.scrollTo(0, value),
-      });
-
+      const targetPosition = element.offsetTop - 80;
+      window.scrollTo({ top: targetPosition, behavior: "smooth" });
       setActiveSection(path);
     }
   };

@@ -67,7 +67,7 @@ export default function FunSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-5xl font-bold text-white sm:text-6xl"
+          className="text-3xl font-bold text-white sm:text-5xl lg:text-6xl"
         >
           FUN ZONE
         </motion.h1>
@@ -76,7 +76,7 @@ export default function FunSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-zinc-400 text-lg"
+          className="text-zinc-400 text-base sm:text-lg"
         >
           Because portfolios don&apos;t have to be boring! 🎉
         </motion.p>

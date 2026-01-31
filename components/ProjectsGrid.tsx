@@ -147,14 +147,14 @@ const projects = [
 
 export default function ProjectsGrid() {
   return (
-    <section className="py-24 px-4 w-full relative overflow-hidden">
+    <section className="py-16 sm:py-24 px-4 w-full relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[100px]" />
         <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px]" />
       </div>
 
-      <div className="max-w-7xl mx-auto space-y-24">
+      <div className="max-w-7xl mx-auto space-y-16 sm:space-y-24">
         {/* Section Header */}
         <div className="text-center space-y-6 max-w-3xl mx-auto">
           <motion.div
@@ -171,7 +171,7 @@ export default function ProjectsGrid() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl font-bold text-white tracking-tight"
+            className="text-3xl sm:text-4xl md:text-6xl font-bold text-white tracking-tight"
           >
             Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 to-zinc-500">Digital Scale</span>
           </motion.h2>
@@ -180,14 +180,14 @@ export default function ProjectsGrid() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg text-zinc-400 leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed"
           >
             Crafting robust, scalable, and user-centric applications. Here are some of the flagship projects I've engineered.
           </motion.p>
         </div>
 
         {/* Projects Showcase */}
-        <div className="space-y-32">
+        <div className="space-y-20 sm:space-y-32">
           {projects.map((project, idx) => (
             <ProjectCard key={project.id} project={project} index={idx} />
           ))}
@@ -208,7 +208,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       transition={{ duration: 1.2, ease: "easeOut" }}
       className={`flex flex-col ${
         isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-      } gap-12 lg:gap-20 items-center`}
+      } gap-8 sm:gap-12 lg:gap-20 items-center`}
     >
       {/* Visual / Preview Area */}
       <div className="w-full lg:w-1/2 relative group perspective-1000">
@@ -271,7 +271,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       {/* Content Area */}
       <div className="w-full lg:w-1/2 space-y-8">
         <div className="space-y-4">
-          <div className="flex items-center gap-3 text-sm font-medium">
+          <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-medium">
              <span className={`px-3 py-1 rounded-full bg-gradient-to-r ${project.color} bg-opacity-10 text-white border border-white/10`}>
                 {project.role}
              </span>
@@ -279,13 +279,13 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
              <span className="text-zinc-400">{project.year} - Present</span>
           </div>
           
-          <h3 className="text-3xl md:text-4xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all">
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all">
             {project.title}
           </h3>
-          <p className="text-xl text-zinc-400 font-light">
+          <p className="text-base sm:text-lg md:text-xl text-zinc-400 font-light">
              {project.subtitle}
           </p>
-          <p className="text-zinc-400 leading-relaxed text-base md:text-lg">
+          <p className="text-zinc-400 leading-relaxed text-sm sm:text-base md:text-lg">
             {project.description}
           </p>
         </div>
@@ -313,17 +313,17 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center gap-4 pt-4">
+        <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-4">
             <a 
                 href={project.links.github}
-                className="p-3 rounded-full border border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all hover:scale-105 active:scale-95"
+            className="p-2.5 sm:p-3 rounded-full border border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all hover:scale-105 active:scale-95"
                 title="View Source Code"
             >
                 <FiGithub className="w-5 h-5" />
             </a>
             <a 
                 href={project.links.live}
-                className="flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-100 text-zinc-900 font-bold hover:bg-white transition-all hover:scale-105 active:scale-95"
+            className="flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-zinc-100 text-zinc-900 text-sm sm:text-base font-bold hover:bg-white transition-all hover:scale-105 active:scale-95"
             >
                 <FiGlobe className="w-4 h-4" />
                 <span>Visit Site</span>
