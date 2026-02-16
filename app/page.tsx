@@ -1,4 +1,5 @@
 import Hero from "@/components/Hero";
+import About from "@/components/About";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Education from "@/components/Education";
@@ -9,6 +10,10 @@ export default function Home() {
       <div className="space-y-20">
         <section id="home">
           <Hero />
+        </section>
+
+        <section id="about" className="scroll-mt-24">
+          <About />
         </section>
 
         <section id="skills" className="scroll-mt-24">

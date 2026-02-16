@@ -30,7 +30,7 @@ export default function Hero() {
       {/* CTA Buttons */}
       <div className="flex flex-wrap items-center gap-3">
         <a
-          href="/resume.pdf"
+          href="https://pcyyqgfzqitlgdbjkyyv.supabase.co/storage/v1/object/public/portfolio-assest/Yash-Resume.pdf"
           download
           className="inline-flex items-center gap-2 rounded-full border border-black bg-black px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-gray-800 dark:border-white dark:bg-white dark:text-black dark:hover:bg-neutral-200"
         >

@@ -54,14 +54,16 @@ export const skillIconMap: Record<string, { icon: React.ComponentType<{ classNam
   "GitHub Actions": { icon: SiGithubactions, color: "text-blue-600" },
   Stripe: { icon: SiStripe, color: "text-violet-500" },
   LangChain: { icon: SiLangchain, color: "text-emerald-600" },
+  "OpenAI / GPT-4": { icon: SiOpenai, color: "text-black dark:text-white" },
   "ChatGPT API": { icon: SiOpenai, color: "text-black dark:text-white" },
-  "Radix UI": { icon: SiRadixui, color: "text-black dark:text-white" },
   "Vertex AI": { icon: SiOpenai, color: "text-blue-500" },
+  "Radix UI": { icon: SiRadixui, color: "text-black dark:text-white" },
 };
 
 export const skillCategories = {
   Frontend: ["React", "Next.js", "MUI", "Tailwind CSS", "TypeScript", "jQuery"],
   Backend: ["Node.js", "Express.js", "NestJS"],
   Database: ["MySQL", "PostgreSQL", "Firebase", "Supabase", "MongoDB"],
+  "AI Integration": ["OpenAI / GPT-4", "LangChain", "Vertex AI"],
   "Other Tools": ["Git", "GitHub", "GitLab", "AWS", "Vercel", "Docker", "GitHub Actions"],
 };
