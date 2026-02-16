@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 const navItems = [
   { name: "Home", path: "#home" },
@@ -60,9 +61,9 @@ export default function Navigation() {
   };
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm">
+    <nav className="sticky top-0 z-50 border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-neutral-800 dark:bg-[#0a0a0a]/80">
       <div className="mx-auto flex max-w-3xl items-center justify-between px-6 py-4 sm:px-8">
-        <Link href="/" className="text-lg font-bold tracking-tight text-black">
+        <Link href="/" className="text-lg font-bold tracking-tight text-black dark:text-white">
           YT
         </Link>
         <div className="flex items-center gap-1 sm:gap-6">
@@ -75,14 +76,15 @@ export default function Navigation() {
                 onClick={(e) => handleScrollTo(e, item.path)}
                 className={`px-2 py-1 text-sm font-medium transition-colors ${
                   isActive
-                    ? "text-black"
-                    : "text-gray-500 hover:text-black"
+                    ? "text-black dark:text-white"
+                    : "text-gray-500 hover:text-black dark:text-neutral-500 dark:hover:text-white"
                 }`}
               >
                 {item.name}
               </Link>
             );
           })}
+          <ThemeToggle />
         </div>
       </div>
     </nav>

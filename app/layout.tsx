@@ -77,6 +77,15 @@ export const metadata: Metadata = {
   },
 };
 
+const themeScript = `
+  (function() {
+    var theme = localStorage.getItem('theme');
+    if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+    }
+  })();
+`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -101,14 +110,15 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${inter.variable} antialiased font-sans bg-white text-black`}>
+      <body className={`${inter.variable} antialiased font-sans bg-white text-black dark:bg-[#0a0a0a] dark:text-neutral-200`}>
         <Navigation />
         <main>{children}</main>
         <Analytics />
