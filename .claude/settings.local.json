@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:ramx.in)",
+      "Bash(del \"components\\\\BackgroundAnimation.tsx\" \"components\\\\NavigationProgress.tsx\" \"components\\\\PageWrapper.tsx\" \"components\\\\CodeBlock.tsx\" \"components\\\\animations.ts\" \"components\\\\FunSection.tsx\")"
+    ]
+  }
+}

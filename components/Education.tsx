@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const education = [
   {
     degree: "Master of Computer Applications (MCA)",
@@ -23,81 +19,38 @@ const education = [
 
 export default function Education() {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 1.2 }}
-      className="space-y-12 max-w-4xl mx-auto px-4"
-    >
-      {/* Header */}
-      <div className="text-center space-y-3 mb-16">
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl font-bold text-white sm:text-5xl lg:text-6xl"
-        >
-          EDUCATION
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="text-zinc-400 text-base sm:text-lg"
-        >
-          My educational background and continuous learning journey.
-        </motion.p>
+    <div className="space-y-10">
+      <div>
+        <h2 className="text-2xl font-bold tracking-tight text-black sm:text-3xl">
+          Education
+        </h2>
+        <p className="mt-2 text-sm text-gray-500">
+          My educational background and learning journey.
+        </p>
       </div>
 
-      {/* Timeline Container */}
-      <div className="relative border-l border-zinc-800 ml-3 md:ml-6 space-y-12 pb-12">
+      <div className="relative space-y-8 border-l-2 border-gray-200 pl-6">
         {education.map((edu, idx) => (
-          <motion.div
-            key={idx}
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: idx * 0.2 }}
-            className="relative pl-8 md:pl-12"
-          >
-            {/* Timeline Dot */}
-            <span
-              className="absolute -left-[5px] top-2 h-2.5 w-2.5 rounded-full bg-emerald-500 ring-4 ring-emerald-500/20"
-              aria-hidden="true"
-            />
+          <div key={idx} className="relative">
+            {/* Timeline dot */}
+            <span className="absolute -left-[calc(1.5rem+5px)] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-gray-300 bg-white" />
 
-            {/* Content Card */}
-            <div className="flex flex-col gap-4 rounded-2xl border border-zinc-700/60 bg-zinc-900/40 p-6 backdrop-blur hover:border-emerald-500/60 hover:bg-zinc-800/60 transition-all group">
-              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
-                <div>
-                  <h3 className="text-2xl font-semibold text-white group-hover:text-emerald-300 transition-colors">
-                    {edu.degree}
-                  </h3>
-                  <p className="text-lg text-emerald-400 font-medium mt-1">
-                    {edu.field}
-                  </p>
-                  <p className="text-zinc-400 font-medium mt-1">
-                    {edu.institution}
-                  </p>
-                </div>
-                <div className="flex-shrink-0 mt-2 sm:mt-0">
-                  <span className="inline-flex items-center justify-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">
-                    {edu.period}
-                  </span>
-                </div>
+            <div className="space-y-2">
+              <div className="flex flex-wrap items-center gap-2">
+                <h3 className="text-base font-bold text-black">{edu.degree}</h3>
+                <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 text-xs font-medium text-gray-500">
+                  {edu.period}
+                </span>
               </div>
-              <p className="text-zinc-300 leading-relaxed text-sm md:text-base">
+              <p className="text-sm font-medium text-gray-700">{edu.field}</p>
+              <p className="text-sm text-gray-500">{edu.institution}</p>
+              <p className="text-sm leading-relaxed text-gray-600">
                 {edu.description}
               </p>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
-
-

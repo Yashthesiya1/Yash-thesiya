@@ -1,21 +1,5 @@
-"use client";
-
-import { useState } from "react";
-import { motion } from "framer-motion";
 import Image from "next/image";
-import {
-  FiExternalLink,
-  FiGithub,
-  FiLayers,
-  FiZap,
-  FiShield,
-  FiCpu,
-  FiGlobe,
-  FiCheckCircle,
-  FiActivity,
-} from "react-icons/fi";
 
-// Project Data
 const projects = [
   {
     id: 1,
@@ -26,27 +10,14 @@ const projects = [
       "A comprehensive platform empowering businesses to automate content creation. Leveraging advanced LLMs, it generates on-brand articles, schedules posts, and provides a real-time collaborative workspace.",
     role: "Full-stack Developer",
     year: "2025",
-    tech: [
-      "Next.js",
-      "Nest.js",
-      "Supabase",
-      "LangChain",
-      "Stripe",
-      "Docker",
-    ],
+    tech: ["Next.js", "Nest.js", "Supabase", "LangChain", "Stripe", "Docker"],
     features: [
       "AI Brand Voice Analysis (GPT-4 / Claude)",
       "Long-form Article Generation (2000+ words)",
       "Real-time Canvas Chat with Markdown",
       "Automated Social Media Scheduling",
     ],
-    links: {
-      github: "#",
-      live: "#",
-    },
-    color: "from-sky-400 to-blue-600",
-    glow: "rgba(14, 165, 233, 0.4)",
-    icon: <FiCpu className="w-6 h-6" />,
+    links: { github: "#", live: "#" },
   },
   {
     id: 2,
@@ -57,27 +28,14 @@ const projects = [
       "An enterprise-grade solution for medical device companies to manage global regulatory submissions and compliance. Streamlines the entire product lifecycle from concept to post-market surveillance.",
     role: "Full-stack Developer",
     year: "2025",
-    tech: [
-      "React",
-      "Radix UI",
-      "Express.js",
-      "Supabase",
-      "Vertex AI",
-      "Stripe",
-    ],
+    tech: ["React", "Radix UI", "Express.js", "Supabase", "Vertex AI", "Stripe"],
     features: [
       "Global Market Submission Management",
       "ISO 13485 QMS Compliance Tracking",
       "ISO 14971 Risk Management Integration",
       "AI-Driven Lifecycle Analytics",
     ],
-    links: {
-      github: "#",
-      live: "#",
-    },
-    color: "from-emerald-400 to-teal-600",
-    glow: "rgba(16, 185, 129, 0.4)",
-    icon: <FiShield className="w-6 h-6" />,
+    links: { github: "#", live: "#" },
   },
   {
     id: 3,
@@ -85,31 +43,17 @@ const projects = [
     subtitle: "AI-Powered Business Platform",
     image: "/assest/omnivia.png",
     description:
-      "A comprehensive AI-powered business intelligence platform that transforms how organizations process and analyze data. Features ChatGPT integration for automated insights, bulk data processing capabilities, and intelligent visualization tools.",
+      "A comprehensive AI-powered business intelligence platform that transforms how organizations process and analyze data. Features ChatGPT integration for automated insights and bulk data processing.",
     role: "Full-stack Developer",
     year: "2024",
-    tech: [
-      "Next.js",
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-      "MUI",
-      "ChatGPT API",
-    ],
+    tech: ["Next.js", "Node.js", "Express", "PostgreSQL", "MUI", "ChatGPT API"],
     features: [
       "ChatGPT Integration for AI-Driven Insights",
       "Excel Sheet Reader for Bulk Data Processing",
       "Dynamic Data Visualization with Interactive Charts",
       "AI-Powered Summaries from Large Datasets",
-      "Multi-User Scalability Architecture",
     ],
-    links: {
-      github: "#",
-      live: "#",
-    },
-    color: "from-purple-400 to-pink-600",
-    glow: "rgba(168, 85, 247, 0.4)",
-    icon: <FiZap className="w-6 h-6" />,
+    links: { github: "#", live: "#" },
   },
   {
     id: 4,
@@ -117,220 +61,140 @@ const projects = [
     subtitle: "Healthcare Platform",
     image: null,
     description:
-      "A secure and comprehensive healthcare management platform designed for modern medical practices. Streamlines patient care with electronic medical records, appointment scheduling, and role-based access control for healthcare teams.",
+      "A secure healthcare management platform for modern medical practices. Streamlines patient care with electronic medical records, appointment scheduling, and role-based access control.",
     role: "Full-stack Developer",
     year: "2024",
-    tech: [
-      "Next.js",
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-      "Supabase Auth",
-      "MUI",
-    ],
+    tech: ["Next.js", "Node.js", "Express", "PostgreSQL", "Supabase Auth", "MUI"],
     features: [
       "Secure Authentication with Supabase Auth",
-      "Appointment Scheduling with Automated Notifications",
+      "Appointment Scheduling with Notifications",
       "Electronic Medical Records (EMR) Management",
       "Role-Based Access Control (RBAC)",
-      "Dashboard Analytics for Appointments & Trends",
     ],
-    links: {
-      github: "#",
-      live: "#",
-    },
-    color: "from-cyan-400 to-blue-600",
-    glow: "rgba(34, 211, 238, 0.4)",
-    icon: <FiActivity className="w-6 h-6" />,
+    links: { github: "#", live: "#" },
   },
 ];
 
 export default function ProjectsGrid() {
   return (
-    <section className="py-16 sm:py-24 px-4 w-full relative overflow-hidden">
-      {/* Background Ambience */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[100px]" />
-        <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px]" />
+    <div className="space-y-10">
+      <div>
+        <h2 className="text-2xl font-bold tracking-tight text-black sm:text-3xl">
+          Projects
+        </h2>
+        <p className="mt-2 text-sm text-gray-500">
+          Selected works I&apos;ve built and contributed to.
+        </p>
       </div>
 
-      <div className="max-w-7xl mx-auto space-y-16 sm:space-y-24">
-        {/* Section Header */}
-        <div className="text-center space-y-6 max-w-3xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-zinc-400 text-sm font-medium backdrop-blur-md"
+      <div className="space-y-8">
+        {projects.map((project) => (
+          <article
+            key={project.id}
+            className="group rounded-xl border border-gray-200 bg-white p-6 transition-colors hover:border-gray-300"
           >
-            <FiLayers className="w-4 h-4" />
-            <span>SELECTED WORKS</span>
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-6xl font-bold text-white tracking-tight"
-          >
-            Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-200 to-zinc-500">Digital Scale</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-sm sm:text-base md:text-lg text-zinc-400 leading-relaxed"
-          >
-            Crafting robust, scalable, and user-centric applications. Here are some of the flagship projects I've engineered.
-          </motion.p>
-        </div>
-
-        {/* Projects Showcase */}
-        <div className="space-y-20 sm:space-y-32">
-          {projects.map((project, idx) => (
-            <ProjectCard key={project.id} project={project} index={idx} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProjectCard({ project, index }: { project: any; index: number }) {
-  const isEven = index % 2 === 0;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-20%" }}
-      transition={{ duration: 1.2, ease: "easeOut" }}
-      className={`flex flex-col ${
-        isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-      } gap-8 sm:gap-12 lg:gap-20 items-center`}
-    >
-      {/* Visual / Preview Area */}
-      <div className="w-full lg:w-1/2 relative group perspective-1000">
-        <div
-          className={`absolute inset-0 bg-gradient-to-r ${project.color} blur-2xl opacity-20 -z-10 transition-opacity duration-500 group-hover:opacity-40`}
-        />
-        
-        {/* Screenshot Preview */}
-        <div className="relative rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/50 backdrop-blur-sm aspect-[4/3] shadow-2xl transition-transform duration-700 group-hover:scale-[1.02] group-hover:rotate-1">
-            {/* Mock Header */}
-            <div className="h-8 bg-zinc-900 border-b border-zinc-800 flex items-center px-4 gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/20 border border-red-500/50" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/20 border border-yellow-500/50" />
-                <div className="w-3 h-3 rounded-full bg-green-500/20 border border-green-500/50" />
-            </div>
-            
-            {/* Screenshot */}
-            <div className={`relative h-[calc(100%-2rem)] w-full overflow-hidden ${
-              project.image ? "bg-zinc-950" : `bg-gradient-to-br ${project.color}`
-            }`}>
-              {/* Decorative Gradients within the card */}
-              <div
-                className={`pointer-events-none absolute top-0 right-0 w-72 h-72 bg-gradient-to-br ${project.color} opacity-10 blur-3xl rounded-full`}
-              />
-              <div className="pointer-events-none absolute bottom-0 left-0 w-56 h-56 bg-white/5 opacity-10 blur-3xl rounded-full" />
-
-              {project.image ? (
+            {/* Image */}
+            {project.image && (
+              <div className="relative mb-5 aspect-[16/9] w-full overflow-hidden rounded-lg border border-gray-100 bg-gray-50">
                 <Image
                   src={project.image}
                   alt={`${project.title} screenshot`}
                   fill
-                  priority={index === 0}
-                  sizes="(min-width: 1024px) 50vw, 100vw"
-                  className="object-contain object-center opacity-95 transition-transform duration-700 group-hover:scale-[1.01]"
+                  sizes="(min-width: 768px) 672px, 100vw"
+                  className="object-contain object-center"
                 />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center">
-                  <div className="text-center text-white/60 opacity-75">
-                    <div className="text-6xl mb-2">{project.icon}</div>
-                    <p className="text-sm font-medium">No screenshot available</p>
-                  </div>
-                </div>
-              )}
+              </div>
+            )}
 
-              {/* Subtle overlay for depth */}
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
-            </div>
-
-             {/* Hover Overlay */}
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    <a href={project.links.live} className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-bold hover:bg-zinc-200 transition-colors">
-                        View Live Project <FiExternalLink />
-                    </a>
-                </div>
-            </div>
-        </div>
-      </div>
-
-      {/* Content Area */}
-      <div className="w-full lg:w-1/2 space-y-8">
-        <div className="space-y-4">
-          <div className="flex flex-wrap items-center gap-2 text-xs sm:text-sm font-medium">
-             <span className={`px-3 py-1 rounded-full bg-gradient-to-r ${project.color} bg-opacity-10 text-white border border-white/10`}>
+            {/* Meta */}
+            <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-gray-500">
+              <span className="rounded-full border border-gray-200 bg-gray-50 px-2.5 py-0.5 font-medium">
                 {project.role}
-             </span>
-             <span className="text-zinc-500">•</span>
-             <span className="text-zinc-400">{project.year} - Present</span>
-          </div>
-          
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-zinc-400 transition-all">
-            {project.title}
-          </h3>
-          <p className="text-base sm:text-lg md:text-xl text-zinc-400 font-light">
-             {project.subtitle}
-          </p>
-          <p className="text-zinc-400 leading-relaxed text-sm sm:text-base md:text-lg">
-            {project.description}
-          </p>
-        </div>
+              </span>
+              <span>&middot;</span>
+              <span>{project.year}</span>
+            </div>
 
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {project.features.map((feature: string, i: number) => (
-                <div key={i} className="flex items-start gap-2 text-zinc-300 text-sm">
-                    <FiCheckCircle className="w-4 h-4 mt-1 text-emerald-500 shrink-0" />
-                    <span>{feature}</span>
-                </div>
-            ))}
-        </div>
+            {/* Title & Description */}
+            <h3 className="text-xl font-bold text-black">{project.title}</h3>
+            <p className="mt-0.5 text-sm font-medium text-gray-500">
+              {project.subtitle}
+            </p>
+            <p className="mt-3 text-sm leading-relaxed text-gray-600">
+              {project.description}
+            </p>
 
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 pt-4 border-t border-zinc-800/50">
-          {project.tech.map((tech: string) => (
-            <span
-              key={tech}
-              className="px-3 py-1.5 text-xs font-medium text-zinc-400 bg-zinc-900/50 border border-zinc-800 rounded hover:border-zinc-700 hover:text-zinc-200 transition-colors cursor-default"
-            >
-              {tech}
-            </span>
-          ))}
-        </div>
+            {/* Features */}
+            <ul className="mt-4 space-y-1.5">
+              {project.features.map((feature, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-2 text-sm text-gray-600"
+                >
+                  <svg
+                    className="mt-0.5 h-4 w-4 shrink-0 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                  {feature}
+                </li>
+              ))}
+            </ul>
 
-        {/* Actions */}
-        <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-4">
-            <a 
+            {/* Tech Stack */}
+            <div className="mt-5 flex flex-wrap gap-1.5 border-t border-gray-100 pt-4">
+              {project.tech.map((tech) => (
+                <span
+                  key={tech}
+                  className="rounded-md border border-dashed border-gray-300 bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-600"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+
+            {/* Actions */}
+            <div className="mt-4 flex items-center gap-3">
+              <a
                 href={project.links.github}
-            className="p-2.5 sm:p-3 rounded-full border border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white transition-all hover:scale-105 active:scale-95"
-                title="View Source Code"
-            >
-                <FiGithub className="w-5 h-5" />
-            </a>
-            <a 
+                className="inline-flex items-center gap-1.5 rounded-full border border-gray-300 px-4 py-2 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-100"
+              >
+                <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 .5a12 12 0 00-3.79 23.4c.6.12.82-.26.82-.58v-2.17c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.25 1.84 1.25 1.07 1.83 2.8 1.3 3.48.99.11-.78.42-1.3.76-1.6-2.66-.3-5.46-1.33-5.46-5.93 0-1.31.47-2.38 1.24-3.22-.12-.3-.54-1.52.12-3.17 0 0 1.01-.32 3.3 1.23a11.46 11.46 0 016.01 0c2.29-1.55 3.3-1.23 3.3-1.23.66 1.65.24 2.87.12 3.17.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.49 5.93.43.37.82 1.1.82 2.22v3.29c0 .32.22.7.83.58A12 12 0 0012 .5z" />
+                </svg>
+                Source
+              </a>
+              <a
                 href={project.links.live}
-            className="flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full bg-zinc-100 text-zinc-900 text-sm sm:text-base font-bold hover:bg-white transition-all hover:scale-105 active:scale-95"
-            >
-                <FiGlobe className="w-4 h-4" />
-                <span>Visit Site</span>
-            </a>
-        </div>
+                className="inline-flex items-center gap-1.5 rounded-full bg-black px-4 py-2 text-xs font-medium text-white transition-colors hover:bg-gray-800"
+              >
+                <svg
+                  className="h-3.5 w-3.5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+                Visit Site
+              </a>
+            </div>
+          </article>
+        ))}
       </div>
-    </motion.div>
+    </div>
   );
 }
-

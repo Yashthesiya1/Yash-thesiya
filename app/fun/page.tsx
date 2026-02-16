@@ -1,11 +1,7 @@
-import PageWrapper from "@/components/PageWrapper";
-import FunSection from "@/components/FunSection";
-
 export default function FunPage() {
   return (
-    <PageWrapper>
-      <FunSection />
-    </PageWrapper>
+    <div className="mx-auto max-w-3xl px-6 py-10 sm:px-8">
+      <p className="text-gray-500">This page has been removed.</p>
+    </div>
   );
 }
-

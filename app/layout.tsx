@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 import Navigation from "@/components/Navigation";
-import NavigationProgress from "@/components/NavigationProgress";
 
 const inter = Inter({
   variable: "--font-geist-sans",
@@ -11,15 +10,8 @@ const inter = Inter({
   display: 'swap',
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: 'swap',
-});
-
-// Viewport should be exported separately in Next.js 14/15
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#ffffff",
   width: "device-width",
   initialScale: 1,
 };
@@ -34,8 +26,8 @@ export const metadata: Metadata = {
     "Portfolio of Yash Thesiya, Software Engineer at Openmalo. Specializing in modern web applications with React, Next.js, TypeScript, and Node.js.",
   keywords: [
     "Software Engineer", "Yash Thesiya", "Openmalo", "Full Stack Developer",
-    "Next.js Developer", "React Developer", "TypeScript", "Node.js", 
-    "AI Integration", "Three.js", "Framer Motion"
+    "Next.js Developer", "React Developer", "TypeScript", "Node.js",
+    "AI Integration"
   ],
   authors: [{ name: "Yash Thesiya", url: "https://www.yashai.me" }],
   creator: "Yash Thesiya",
@@ -44,7 +36,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/icon.png",
-    apple: "/apple-icon.png", // Recommended for mobile SEO
+    apple: "/apple-icon.png",
   },
   verification: {
     google: "59Qt7CkU9CW8DyVumPAz1rAoAWNVs83Vnq2LJEdN-vA",
@@ -58,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "Yash Thesiya Portfolio",
     images: [
       {
-        url: "/og-image.png", // Ensure you have a 1200x630px image at public/og-image.png
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Yash Thesiya Portfolio Preview",
@@ -90,7 +82,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // JSON-LD Structured Data for Google
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
@@ -98,7 +89,7 @@ export default function RootLayout({
     "url": "https://www.yashai.me",
     "image": "https://www.yashai.me/icon.png",
     "sameAs": [
-      "https://github.com/Yashthesiya1", // Update with your actual handles
+      "https://github.com/Yashthesiya1",
       "http://linkedin.com/in/yash-thesiya/",
       "https://twitter.com/yashthesiya"
     ],
@@ -117,10 +108,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased font-sans`}
-      >
-        <NavigationProgress />
+      <body className={`${inter.variable} antialiased font-sans bg-white text-black`}>
         <Navigation />
         <main>{children}</main>
         <Analytics />

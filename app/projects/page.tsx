@@ -1,11 +1,9 @@
-import PageWrapper from "@/components/PageWrapper";
 import Projects from "@/components/Projects";
 
 export default function ProjectsPage() {
   return (
-    <PageWrapper>
+    <div className="mx-auto max-w-3xl px-6 py-10 sm:px-8">
       <Projects />
-    </PageWrapper>
+    </div>
   );
 }
-
