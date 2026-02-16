@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { skillIconMap } from "./skills/skillIconMap";
 
 const projects = [
   {
@@ -150,15 +151,24 @@ export default function ProjectsGrid() {
             </ul>
 
             {/* Tech Stack */}
-            <div className="mt-5 flex flex-wrap gap-1.5 border-t border-gray-100 pt-4 dark:border-neutral-800">
-              {project.tech.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-md border border-dashed border-gray-300 bg-gray-50 px-2.5 py-1 text-xs font-medium text-gray-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400"
-                >
-                  {tech}
-                </span>
-              ))}
+            <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-gray-100 pt-4 dark:border-neutral-800">
+              {project.tech.map((tech) => {
+                const entry = skillIconMap[tech];
+                const IconComponent = entry?.icon;
+                const iconColor = entry?.color || "text-gray-500";
+                return IconComponent ? (
+                  <span key={tech} title={tech}>
+                    <IconComponent className={`h-5 w-5 ${iconColor}`} />
+                  </span>
+                ) : (
+                  <span
+                    key={tech}
+                    className="text-xs font-medium text-gray-500 dark:text-neutral-400"
+                  >
+                    {tech}
+                  </span>
+                );
+              })}
             </div>
 
             {/* Actions */}

@@ -20,7 +20,11 @@ import {
   SiAmazonwebservices,
   SiVercel,
   SiDocker,
-  SiGithubactions
+  SiGithubactions,
+  SiStripe,
+  SiOpenai,
+  SiLangchain,
+  SiRadixui,
 } from "react-icons/si";
 
 export const skillIconMap: Record<string, { icon: React.ComponentType<{ className?: string }>, color: string }> = {
@@ -32,11 +36,14 @@ export const skillIconMap: Record<string, { icon: React.ComponentType<{ classNam
   jQuery: { icon: SiJquery, color: "text-blue-700" },
   "Node.js": { icon: SiNodedotjs, color: "text-green-600" },
   "Express.js": { icon: SiExpress, color: "text-black dark:text-white" },
+  Express: { icon: SiExpress, color: "text-black dark:text-white" },
   NestJS: { icon: SiNestjs, color: "text-red-500" },
+  "Nest.js": { icon: SiNestjs, color: "text-red-500" },
   MySQL: { icon: SiMysql, color: "text-blue-600" },
   PostgreSQL: { icon: SiPostgresql, color: "text-blue-700" },
   Firebase: { icon: SiFirebase, color: "text-amber-500" },
   Supabase: { icon: SiSupabase, color: "text-emerald-500" },
+  "Supabase Auth": { icon: SiSupabase, color: "text-emerald-500" },
   MongoDB: { icon: SiMongodb, color: "text-green-600" },
   Git: { icon: SiGit, color: "text-orange-600" },
   GitHub: { icon: SiGithub, color: "text-black dark:text-white" },
@@ -45,6 +52,11 @@ export const skillIconMap: Record<string, { icon: React.ComponentType<{ classNam
   Vercel: { icon: SiVercel, color: "text-black dark:text-white" },
   Docker: { icon: SiDocker, color: "text-blue-500" },
   "GitHub Actions": { icon: SiGithubactions, color: "text-blue-600" },
+  Stripe: { icon: SiStripe, color: "text-violet-500" },
+  LangChain: { icon: SiLangchain, color: "text-emerald-600" },
+  "ChatGPT API": { icon: SiOpenai, color: "text-black dark:text-white" },
+  "Radix UI": { icon: SiRadixui, color: "text-black dark:text-white" },
+  "Vertex AI": { icon: SiOpenai, color: "text-blue-500" },
 };
 
 export const skillCategories = {
